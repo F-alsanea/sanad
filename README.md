@@ -12,15 +12,15 @@ An operating system for coding agents, by [Faisal Alsanea](https://github.com/F-
 ```
 You
   →  AGENTS.md     قانون هذا المشروع / project law
-  →  FABLE.md      دستور المهندس — طبقة واحدة فقط / engineering standard, one layer
-  →  skills/       بوابات متخصصة — الأمن أولاً / specialized gates, security first
+  →  HANDOFF.md    ذاكرة بين الوكلاء / shared state across agents
+  →  FABLE.md      دستور المهندس — طبقة واحدة فقط / one layer
+  →  skills/       بوابات متخصصة — الأمن أولاً / specialized gates
 ```
 
-**سند** اسم الأداة. **FABLE** اسم الدستور الداخلي. **AGENTS** قانون المشروع.
+**سند** اسم الأداة. **FABLE** اسم الدستور الداخلي. **AGENTS** قانون المشروع. **HANDOFF** ذاكرة الوكلاء.
 
 **لغة الملفات / File language**  
-ملفات الوكيل (`FABLE.md`, `AGENTS.md`, `skills/`) بالإنجليزي عشان التنفيذ أدق.  
-الشرح للبشر في README و`docs/` عربي أولاً. أمر الموافقة يبقى `نفّذ`.
+ملفات الوكيل بالإنجليزي. الشرح للبشر عربي أولاً. أمر الموافقة `نفّذ`.
 
 ---
 
@@ -28,96 +28,68 @@ You
 
 ### لماذا سند
 
-الوكيل يسرّع البناء. من غير قانون يسرّع التخريب أيضاً.
+الوكيل يسرّع البناء. من غير قانون يسرّع التخريب أيضاً. ينتظر `نفّذ`، ولا يدّعي «تم» بلا دليل، والأمن fail-closed.
 
-سند يفرض على أي وكيل (Claude، Cursor، Codex، Copilot، Grok):
+### تثبيت — مهارات من رابط، قانون من ملف
 
-- يقرأ المشروع قبل ما يكتب
-- يصنّف جديد أو قائم
-- ينتظر `نفّذ` قبل الكود
-- لا يدّعي «تم» بلا دليل
-- الأمن fail-closed حتى لو الاستضافة مؤجلة
-
-### المحتويات
-
-| الملف | الوظيفة |
-|---|---|
-| `templates/AGENTS.md` | القانون المحلي — انسخه لجذر كل مشروع |
-| `FABLE.md` | الدستور الكامل — لا يُحمَّل كله في كل رد |
-| `ARCHITECTURE.md` | كيف تشتغل الطبقتان |
-| `skills/fable` | سكيل قصير يفتح الطبقة المطلوبة فقط |
-| `skills/app-security-gate` | بوابة قبل الشحن: المفاتيح، تاريخ Git، RLS، التشفير، مصادقة الخادم، السجلات |
-
-### تثبيت
+المهارات تُركّب من GitHub. قانون المشروع والـ handoff يبقون ملفين داخل تطبيقك عشان يكمّل أي وكيل من نفس النقطة.
 
 ```bash
-git clone https://github.com/F-alsanea/sanad.git
-
-cp sanad/templates/AGENTS.md /path/to/your-app/AGENTS.md
-mkdir -p /path/to/your-app/.claude/skills
-cp -R sanad/skills/fable sanad/skills/app-security-gate /path/to/your-app/.claude/skills/
+# 1) المهارات — من جذر مشروعك
+npx add-skill F-alsanea/sanad
 ```
+
+```bash
+# 2) القانون والذاكرة — ملفان في جذر التطبيق
+# إن ما كان عندك AGENTS.md خاص بالمشروع، لا تستبدله
+cp templates/AGENTS.md /path/to/your-app/AGENTS.md
+cp templates/HANDOFF.md /path/to/your-app/HANDOFF.md
+```
+
+بدون npx: `git clone` ثم انسخ `skills/fable` و`skills/app-security-gate` إلى مجلد أداتك.
 
 | الأداة | مجلد المهارات |
 |---|---|
 | Claude Code | `.claude/skills/` |
 | Cursor | `.cursor/skills/` |
 | Grok | `.grok/skills/` |
-| Codex | `skills/` مع `AGENTS.md` في الجذر |
+| Codex | `.codex/skills/` أو `skills/` |
 | Copilot | `.github/skills/` |
-
-اسم مجلد السكيل = حقل `name` داخل `SKILL.md`. لا تغيّره.
 
 أول جلسة:
 
 ```
-اقرأ AGENTS.md وابدأ.
-```
-
-قبل الشحن أو عند API / أدمن / بيانات:
-
-```
-اقرأ سكيل app-security-gate ودقّق الأمان.
+اقرأ HANDOFF.md ثم AGENTS.md وابدأ.
 لا تعدّل حتى أقول نفّذ.
 ```
 
-برومبت أمني جاهز: [`skills/app-security-gate/assets/user-prompt-ar.md`](skills/app-security-gate/assets/user-prompt-ar.md)
+التفاصيل: [`docs/install.md`](docs/install.md)
 
-تفاصيل التثبيت: [`docs/install.md`](docs/install.md)
+برومبت أمني: [`skills/app-security-gate/assets/user-prompt-ar.md`](skills/app-security-gate/assets/user-prompt-ar.md)
 
 ### لا تفعل
 
 - لا تدمج AGENTS داخل FABLE ولا العكس
-- لا تطلب من أحد يقرأ الدستور كاملاً
-- لا تفتح خريطة معمارية عشان تغيّر لون
-- لا تقول «التطبيق آمن» إلا إذا بوابات الأمن السبع `PASS` بدليل
+- لا تستبدل `AGENTS.md` قائم في المشروع بقالب سند العام
+- لا تقول «آمن» إلا إذا البوابات السبع `PASS` بدليل
 
 ---
 
 ## English
 
-Sanad is a small operating system for coding agents. It is not a mega-prompt.
-
-Agent contracts (`FABLE.md`, `AGENTS.md`, skills) are English. Human docs are Arabic-first. The approval token stays `نفّذ`.
-
-- `AGENTS.md` is the law of *this* repo: scope, phase order, wait for approval, deferred infra.
-- `FABLE.md` is the engineering standard. Load only the layer the task needs.
-- `app-security-gate` is a fail-closed pre-ship audit: hide API keys, purge secrets from git history, expose only the public database key, enable row-level security, encrypt sensitive data, enforce server-side auth, and keep secrets out of logs.
-
-Compatible with the [Agent Skills](https://agentskills.io/specification) format. Works with Claude Code, Cursor, Codex, Copilot, Grok, and any agent that reads `SKILL.md`.
-
-### Install
+Skills install from the repo URL. Project law does not.
 
 ```bash
-git clone https://github.com/F-alsanea/sanad.git
-cp sanad/templates/AGENTS.md /path/to/your-app/AGENTS.md
-cp -R sanad/skills/fable sanad/skills/app-security-gate /path/to/your-app/.claude/skills/
+npx add-skill F-alsanea/sanad
 ```
 
-Then: `Read AGENTS.md and start.`  
-Before ship: `Load app-security-gate and audit security. Do not edit until I say نفّذ.`
+Then copy `templates/AGENTS.md` and `templates/HANDOFF.md` into the app root **only if** the app has no project law yet. Do not overwrite a repo-specific `AGENTS.md`.
 
-Do not merge AGENTS into FABLE. Do not claim the app is secure unless all seven security gates are `PASS` with evidence.
+`npx add-skill` places `fable` and `app-security-gate`. It does not create `AGENTS.md` or `HANDOFF.md`. Those files are how Claude, Cursor, Grok, and Codex share state.
+
+First message: `Read HANDOFF.md then AGENTS.md and start. Do not edit until I say نفّذ.`
+
+Details: [`docs/install.md`](docs/install.md)
 
 ---
 
