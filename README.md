@@ -4,7 +4,7 @@
 
 # سند / Sanad
 
-نظام تشغيل لوكلاء البرمجة، من [فيصل الصانع](https://github.com/F-alsanea).  
+نظام تشغيل لوكلاء البرمجة، من [فيصل السني](https://github.com/F-alsanea).  
 An operating system for coding agents, by [Faisal Alsanea](https://github.com/F-alsanea).
 
 ليس برومبت يُلصق في الشات. ثلاثة طبقات، كل واحدة لها شغل.
