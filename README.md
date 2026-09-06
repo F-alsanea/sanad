@@ -18,6 +18,10 @@ You
 
 **سند** اسم الأداة. **FABLE** اسم الدستور الداخلي. **AGENTS** قانون المشروع.
 
+**لغة الملفات / File language**  
+ملفات الوكيل (`FABLE.md`, `AGENTS.md`, `skills/`) بالإنجليزي عشان التنفيذ أدق.  
+الشرح للبشر في README و`docs/` عربي أولاً. أمر الموافقة يبقى `نفّذ`.
+
 ---
 
 ## العربية
@@ -93,6 +97,8 @@ cp -R sanad/skills/fable sanad/skills/app-security-gate /path/to/your-app/.claud
 ## English
 
 Sanad is a small operating system for coding agents. It is not a mega-prompt.
+
+Agent contracts (`FABLE.md`, `AGENTS.md`, skills) are English. Human docs are Arabic-first. The approval token stays `نفّذ`.
 
 - `AGENTS.md` is the law of *this* repo: scope, phase order, wait for approval, deferred infra.
 - `FABLE.md` is the engineering standard. Load only the layer the task needs.
