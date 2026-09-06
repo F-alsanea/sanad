@@ -8,7 +8,7 @@ Human note: هذا الملف ذاكرة المشروع بين الوكلاء. �
 
 ## Current phase
 
-**v0.1 package — public repo live, agent contracts in English, human docs Arabic-first.**
+**v0.1 package — Claude review gaps closed: gates.md shipped, orphan Arabic template removed, `نفّذ` vs scan clarified.**
 
 ## Repository baseline
 
@@ -30,8 +30,13 @@ Human note: هذا الملف ذاكرة المشروع بين الوكلاء. �
 - `AGENTS.md` converted to English; `نفّذ` kept as the mutation token.
 - `skills/fable/SKILL.md` English loader (does not ingest all of FABLE).
 - `skills/app-security-gate` present with scanner script and Arabic user prompt.
+- `skills/app-security-gate/references/gates.md` present (seven gates + attack expansion).
+- Orphan `AGENTS-template.md` (Arabic machine contract) removed.
+- `templates/AGENTS.md` is a full offline English copy of the root contract, not a pointer.
 - README shows profile avatar via `https://github.com/F-alsanea.png`.
 - Language split decided: agent files English, human docs Arabic.
+- Risk-tier lookup points at FABLE Section 10.1.
+- Read-only `scan-secrets.sh` does not wait for `نفّذ`; writes still do.
 
 ## Do not
 
@@ -40,20 +45,20 @@ Human note: هذا الملف ذاكرة المشروع بين الوكلاء. �
 - Do not claim an app is secure unless the seven security gates are PASS with evidence.
 - Do not put real API keys or `.env` values in this repository.
 - Do not rewrite Git history unless the owner names the remote and says `نفّذ`.
+- Do not recreate `AGENTS-template.md` in Arabic. Machine contract stays English.
 
 ## Open gaps
 
-- `templates/AGENTS.md` is a pointer, not a full offline copy of root `AGENTS.md`.
-- `skills/app-security-gate/references/gates.md` may be missing on GitHub; restore from the local kit if absent.
 - No `v0.1.0` git tag yet.
 - Repo description / topics on GitHub may still need a pass.
-- This handoff file is new — agents after this commit must treat it as source of truth for "what happened".
+- Precedence text is still restated in AGENTS, FABLE, ARCHITECTURE, and `skills/fable` — keep them aligned when one changes.
 
 ## Verification state
 
 - `✅ Confirmed`: `FABLE.md` on GitHub starts with FABLE 5.1 v2.3.0 and is the long constitution (~119KB).
 - `✅ Confirmed`: root `AGENTS.md` is the English operating law.
-- `⚠️ Code-confirmed`: security skill exists; some reference files were uploaded in shorter form than the local kit.
+- `✅ Confirmed`: `references/gates.md` exists beside `stack-adapters.md`.
+- `✅ Confirmed`: `AGENTS-template.md` is gone from the tree.
 - `Not applicable`: app tests, deploy, database.
 
 ## How the next agent starts
@@ -66,7 +71,7 @@ Human note: هذا الملف ذاكرة المشروع بين الوكلاء. �
 
 ## Next action
 
-Keep this file current after every approved change. Next product step, only if the owner asks: restore missing security-gate references from the local kit, then tag `v0.1.0`.
+Keep this file current after every approved change. Next product step, only if the owner asks: tag `v0.1.0`.
 
 Last updated: 2026-09-06
-Last writer: Grok (Sanad packaging session)
+Last writer: Grok (Claude-review gap close)

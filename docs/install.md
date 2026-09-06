@@ -32,9 +32,10 @@ npx add-skill https://github.com/F-alsanea/sanad
 
 ## قانون المشروع — ملف داخل الجذر
 
-1. إن لم يوجد `AGENTS.md`: انسخ `templates/AGENTS.md` أو الجذر `AGENTS.md` من سند إلى جذر التطبيق.
+1. إن لم يوجد `AGENTS.md`: انسخ `templates/AGENTS.md` (نسخة إنجليزي كاملة) أو الجذر `AGENTS.md` إلى جذر التطبيق.
 2. انسخ `templates/HANDOFF.md` إلى الجذر باسم `HANDOFF.md` واملأه لهذا المشروع.
 3. عدّل في AGENTS فقط ما يخص هذا التطبيق. لا تلصق FABLE فيه.
+4. لا تستخدم ملفاً اسمه `AGENTS-template.md`. القانون الآلي إنجليزي فقط.
 
 هذان الملفان لا يُستبدلان برابط سكيل. هما ذاكرة هذا المشروع بين Claude وCursor وGrok وCodex.
 
@@ -42,8 +43,8 @@ npx add-skill https://github.com/F-alsanea/sanad
 
 ```bash
 git clone https://github.com/F-alsanea/sanad.git
-cp sanad/AGENTS.md sanad/templates/HANDOFF.md /path/to/your-app/
-# سمّ القالب HANDOFF.md إن كان الاسم مختلفاً
+cp sanad/templates/AGENTS.md /path/to/your-app/AGENTS.md
+cp sanad/templates/HANDOFF.md /path/to/your-app/HANDOFF.md
 mkdir -p /path/to/your-app/.claude/skills
 cp -R sanad/skills/fable sanad/skills/app-security-gate /path/to/your-app/.claude/skills/
 ```
@@ -78,6 +79,8 @@ cp -R sanad/skills/fable sanad/skills/app-security-gate /path/to/your-app/.claud
 ```
 
 `FABLE.md` اختياري في جذر التطبيق. السكيل `fable` يبحث عنه عند الحاجة.
+
+مسح `scan-secrets.sh` قراءة فقط: لا ينتظر `نفّذ`. تدوير المفاتيح والكتابة ينتظران `نفّذ`.
 
 ## التحقق
 

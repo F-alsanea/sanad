@@ -3,7 +3,7 @@ name: app-security-gate
 description: Fail-closed security audit and hardening for apps. Use when the user asks to hide API keys, strip secrets from git history, expose only the public database key, enable row-level security, encrypt sensitive data, enforce server-side auth, secure logs, or run a pre-ship security review. Triggers include أمان, اختراق, RLS, secrets, API keys, security audit, تحقق من الأمان, hardening.
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   type: workflow
   fable_layer: Security
   risk_tier: "3"
@@ -13,8 +13,10 @@ metadata:
 
 Fail-closed pre-ship gate. Do not trust a hidden UI or a key "hidden in the frontend". Never print a secret value.
 
-FABLE layer: Security (Section 5.2). Risk tier: 3.
-If `AGENTS.md` exists: report, then wait for `نفّذ`. Touch no file before approval unless the user ordered execution in this same message.
+FABLE layer: Security (Section 5.2). Risk tier: 3 (defined in FABLE Section 10.1).
+If `AGENTS.md` exists: report, then wait for `نفّذ` before any write. Touch no file before approval unless the user ordered execution in this same message.
+
+Read-only `scripts/scan-secrets.sh` does **not** require `نفّذ`. Rotation, history rewrite, and any write do.
 
 Read on demand:
 - `references/gates.md` — seven gates plus attack expansion
