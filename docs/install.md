@@ -60,6 +60,15 @@ cp -R sanad/skills/fable sanad/skills/app-security-gate /path/to/your-app/.claud
 
 اسم مجلد السكيل = حقل `name` في YAML. لا تغيّره.
 
+## ليس كونكتور
+
+لا تفترض زر Connect Sanad في Claude أو Cursor أو Codex أو Copilot.
+
+- سند = مهارات من `https://github.com/F-alsanea/sanad` + قانون في جذر التطبيق
+- ربط GitHub = إعداد الأداة نفسها (فتح مجلد، أو Connect GitHub في Codex)
+- صلاحيات الكتابة على المستودع تجي من الأداة، لا من سند
+- لا تربط Neon ولا R2 ولا Redis بالوكيل. أسرار بيئة فقط
+
 ## أول جلسة
 
 ```

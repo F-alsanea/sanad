@@ -56,12 +56,28 @@ cp templates/HANDOFF.md /path/to/your-app/HANDOFF.md
 | Codex | `.codex/skills/` أو `skills/` |
 | Copilot | `.github/skills/` |
 
-أول جلسة:
+### Claude و Cursor و Codex و Copilot
+
+سند ليس GitHub App وليس كونكتور داخل هذه الأدوات. كل أداة تربط GitHub لحسابها. سند يُركّب كمهارات في مجلد الأداة + `ملفين` في جذر مشروعك: `AGENTS.md` و`HANDOFF.md`.
+
+| الأداة | أين يعيش سند | ربط GitHub (منفصل عن سند) |
+|---|---|---|
+| Claude Code | `.claude/skills/` | افتح مجلد المشروع في Claude Code |
+| Cursor | `.cursor/skills/` | Settings → GitHub، أو افتح المجلد |
+| Codex | `.codex/skills/` أو `skills/` + يقرأ `AGENTS.md` من الجذر | Connect GitHub من ChatGPT / تطبيق Codex |
+| Copilot | `.github/skills/` | Copilot مفعّل على المستودع |
+| Grok | `.grok/skills/` | كونكتور GitHub في الحساب |
+
+أول رسالة لأي وكيل:
 
 ```
 اقرأ HANDOFF.md ثم AGENTS.md وابدأ.
 لا تعدّل حتى أقول نفّذ.
 ```
+
+إذا الأداة ما شافت المهارة: `استخدم المهارة app-security-gate من skills/`
+
+لا تربط Neon أو R2 أو Redis بالأداة. هذي أسرار بيئة، ليست جزءاً من سند.
 
 التفاصيل: [`docs/install.md`](docs/install.md)
 
@@ -72,6 +88,7 @@ cp templates/HANDOFF.md /path/to/your-app/HANDOFF.md
 - لا تدمج AGENTS داخل FABLE ولا العكس
 - لا تستبدل `AGENTS.md` قائم في المشروع بقالب سند العام
 - لا تقول «آمن» إلا إذا البوابات السبع `PASS` بدليل
+- لا تفترض وجود زر Connect Sanad في Claude أو Cursor أو Codex
 
 ---
 
@@ -87,7 +104,21 @@ Then copy `templates/AGENTS.md` and `templates/HANDOFF.md` into the app root **o
 
 `npx add-skill` places `fable` and `app-security-gate`. It does not create `AGENTS.md` or `HANDOFF.md`. Those files are how Claude, Cursor, Grok, and Codex share state.
 
+Sanad is not a GitHub App and not a connector inside those tools. Each tool connects GitHub on its own. Sanad is skills in the tool folder plus `AGENTS.md` and `HANDOFF.md` in the app root.
+
+| Tool | Where Sanad lives | GitHub access (not Sanad) |
+|---|---|---|
+| Claude Code | `.claude/skills/` | Open the project folder |
+| Cursor | `.cursor/skills/` | Settings → GitHub, or open the folder |
+| Codex | `.codex/skills/` or `skills/` | Connect GitHub in ChatGPT / Codex |
+| Copilot | `.github/skills/` | Copilot enabled on the repo |
+| Grok | `.grok/skills/` | GitHub connector on the account |
+
 First message: `Read HANDOFF.md then AGENTS.md and start. Do not edit until I say نفّذ.`
+
+If the tool misses the skill: `Use the app-security-gate skill from skills/`.
+
+Do not connect Neon, R2, or Redis to the agent. Those are runtime secrets, not Sanad.
 
 Details: [`docs/install.md`](docs/install.md)
 
