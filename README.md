@@ -8,6 +8,7 @@
 An operating system for coding agents, by [Faisal Alsanea](https://github.com/F-alsanea).
 
 ليس برومبت يُلصق في الشات. ثلاثة طبقات، كل واحدة لها شغل.
+It is not a prompt you paste into chat. Three layers, each with one job.
 
 ```
 You
@@ -17,10 +18,12 @@ You
   →  skills/       بوابات متخصصة — الأمن أولاً / specialized gates
 ```
 
-**سند** اسم الأداة. **FABLE** اسم الدستور الداخلي. **AGENTS** قانون المشروع. **HANDOFF** ذاكرة الوكلاء.
+**سند** اسم الأداة. **FABLE** اسم الدستور الداخلي. **AGENTS** قانون المشروع. **HANDOFF** ذاكرة الوكلاء.  
+**Sanad** is the tool. **FABLE** is the engineering constitution. **AGENTS** is project law. **HANDOFF** is agent memory.
 
 **لغة الملفات / File language**  
-ملفات الوكيل بالإنجليزي. الشرح للبشر عربي أولاً. أمر الموافقة `نفّذ`.
+ملفات الوكيل بالإنجليزي. الشرح للبشر عربي أولاً. أمر الموافقة `نفّذ`.  
+Agent files are English. Human docs are Arabic first. Approval token is `نفّذ`.
 
 ---
 
@@ -94,33 +97,69 @@ cp templates/HANDOFF.md /path/to/your-app/HANDOFF.md
 
 ## English
 
-Skills install from the repo URL. Project law does not.
+### Why Sanad
+
+An agent speeds up building. Without law it also speeds up damage. It waits for `نفّذ`, does not claim “done” without evidence, and treats security as fail-closed.
+
+### Install — skills from a URL, law from a file
+
+Skills install from GitHub. Project law and the handoff stay as two files inside your app so any agent can continue from the same point.
 
 ```bash
+# 1) Skills — from your app root
 npx add-skill F-alsanea/sanad
 ```
 
-Then copy `templates/AGENTS.md` and `templates/HANDOFF.md` into the app root **only if** the app has no project law yet. Do not overwrite a repo-specific `AGENTS.md`.
+```bash
+# 2) Law and memory — two files in the app root
+# If the project already has its own AGENTS.md, do not overwrite it
+cp templates/AGENTS.md /path/to/your-app/AGENTS.md
+cp templates/HANDOFF.md /path/to/your-app/HANDOFF.md
+```
 
-`npx add-skill` places `fable` and `app-security-gate`. It does not create `AGENTS.md` or `HANDOFF.md`. Those files are how Claude, Cursor, Grok, and Codex share state.
+Without npx: `git clone`, then copy `skills/fable` and `skills/app-security-gate` into your tool’s skills folder.
 
-Sanad is not a GitHub App and not a connector inside those tools. Each tool connects GitHub on its own. Sanad is skills in the tool folder plus `AGENTS.md` and `HANDOFF.md` in the app root.
+| Tool | Skills folder |
+|---|---|
+| Claude Code | `.claude/skills/` |
+| Cursor | `.cursor/skills/` |
+| Grok | `.grok/skills/` |
+| Codex | `.codex/skills/` or `skills/` |
+| Copilot | `.github/skills/` |
 
-| Tool | Where Sanad lives | GitHub access (not Sanad) |
+### Claude, Cursor, Codex, and Copilot
+
+Sanad is not a GitHub App and not a connector inside these tools. Each tool connects GitHub for its own account. Sanad is installed as skills in the tool folder plus two files in your app root: `AGENTS.md` and `HANDOFF.md`.
+
+| Tool | Where Sanad lives | GitHub access (separate from Sanad) |
 |---|---|---|
-| Claude Code | `.claude/skills/` | Open the project folder |
+| Claude Code | `.claude/skills/` | Open the project folder in Claude Code |
 | Cursor | `.cursor/skills/` | Settings → GitHub, or open the folder |
-| Codex | `.codex/skills/` or `skills/` | Connect GitHub in ChatGPT / Codex |
-| Copilot | `.github/skills/` | Copilot enabled on the repo |
+| Codex | `.codex/skills/` or `skills/` + reads `AGENTS.md` from the root | Connect GitHub from ChatGPT / the Codex app |
+| Copilot | `.github/skills/` | Copilot enabled on the repository |
 | Grok | `.grok/skills/` | GitHub connector on the account |
 
-First message: `Read HANDOFF.md then AGENTS.md and start. Do not edit until I say نفّذ.`
+First message to any agent:
 
-If the tool misses the skill: `Use the app-security-gate skill from skills/`.
+```
+Read HANDOFF.md then AGENTS.md and start.
+Do not edit until I say نفّذ.
+```
 
-Do not connect Neon, R2, or Redis to the agent. Those are runtime secrets, not Sanad.
+If the tool does not see the skill: `Use the app-security-gate skill from skills/`
+
+Do not connect Neon, R2, or Redis to the tool. Those are environment secrets, not part of Sanad.
 
 Details: [`docs/install.md`](docs/install.md)
+
+Security prompt: [`skills/app-security-gate/assets/user-prompt-ar.md`](skills/app-security-gate/assets/user-prompt-ar.md)
+
+### Do not
+
+- Do not merge AGENTS into FABLE or the reverse
+- Do not overwrite an existing project `AGENTS.md` with the generic Sanad template
+- Do not say “secure” unless all seven gates are `PASS` with evidence
+- Do not assume a Connect Sanad button exists in Claude, Cursor, or Codex
 
 ---
 
