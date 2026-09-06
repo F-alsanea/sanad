@@ -1,246 +1,255 @@
-# AGENTS.md — قواعد العمل في هذا المستودع
+# AGENTS.md — operating law for this repository
 
-> ملف مُلزِم لأي وكيل ذكاء اصطناعي يعمل هنا (Codex / Claude / Gemini / Cursor / غيرهم).
-> اقرأه بالكامل في بداية كل جلسة، قبل أي فحص أو تعديل.
+> Binding on every coding agent working here (Claude, Codex, Cursor, Copilot, Grok, Gemini, others).
+> Read this file in full at the start of every session, before any inspection or edit.
 
-## قاعدة الأسبقية
+Human-facing docs for Sanad are Arabic-first in `README.md`. This file is English on purpose: it is the machine contract.
 
-عند أي تعارض بين هذا الملف وأي سكيل عام (بما فيه FABLE) أو تعليمات محفوظة:
-تسود القواعد الحاكمة وبروتوكول التحقق في هذا الملف.
+## Precedence
 
-إذا كان التعارض يمنع إتمام المهمة، توقف واسأل المستخدم. لا تجتهد ولا ترجّح بنفسك.
+When this file conflicts with a general skill (including FABLE) or saved instructions:
+the governing rules and verification protocol in **this file** win.
 
-العلاقة مع FABLE:
+If a conflict would block the task, stop and ask the user. Do not improvise a compromise.
 
-هذا الملف يشغّل المشروع. FABLE يعطي القوة الهندسية. لا تُنسخ نصوص FABLE إلى هنا.
+Relationship with FABLE:
 
-- هذا الملف يفوز في: النطاق، المراحل، انتظار `نفّذ`، الملفات المسموحة، البنية المؤجلة.
-- FABLE يفوز في: fail-closed، صفر placeholders، الدليل قبل «تم»، اقرأ قبل اكتب، تصنيف المخاطر.
-- إذا وُجد ملف السكيل FABLE في الجلسة أو الريبو، طبّق منه **القسم المطلوب فقط**. إذا لم يُحمَّل، طبّق جوهره المختصر أدناه. لا تتوقف عن الجودة بحجة أن الملف الطويل غير مفتوح.
+This file runs the project. FABLE supplies engineering force. Do not paste FABLE prose into this file.
 
-### جوهر FABLE — دائم في كل مهمة
-- اقرأ الملف قبل تعديله.
-- لا كود قبل التقرير والموافقة إلا إذا قال المستخدم `نفّذ` مباشرة على أمر واضح.
-- لا TODO / stub / بيانات وهمية مكان منطق مطلوب.
-- لا تدّعي تحقق بلا أثر (ملف:سطر أو مخرج أمر).
-- أمن البيانات والصلاحيات fail-closed حتى لو البنية مؤجلة.
+- This file wins on: scope, phase order, waiting for `نفّذ`, allowed files, deferred infrastructure.
+- FABLE wins on: fail-closed, zero placeholders, evidence before "done", read-before-write, risk tiers.
+- If a FABLE skill or `FABLE.md` is present, load **only the section the task needs**. If it is not loaded, apply the compact core below. Do not drop quality because the long file is closed.
 
-### متى تسحب قوة FABLE كاملة
-| نوع المهمة | وش ينفتح من FABLE |
+### FABLE core — always on
+
+- Read a file before you edit it.
+- No code before the report and approval, unless the user said `نفّذ` (or "execute") on a clear request in this message.
+- No TODO / stub / fake data in place of required logic.
+- Do not claim verification without an artifact (`file:line` or command output).
+- Auth and data security stay fail-closed even when infrastructure is deferred.
+
+### When to pull full FABLE
+
+| Task | Open from FABLE |
 |---|---|
-| تعديل نص / لون / class | الجوهر فقط. لا Matrix كاملة. لا Layer S |
-| باقٍ موجود + سلوك محلي | Layer R خفيف + تعديل جراحي |
-| UI / RTL / شكل | Section 2 عند لمس الواجهة فقط |
-| صفحة عامة / محتوى قابل للفهرسة | Section 3 (SEO/AEO/GEO) |
-| API / بيانات / صلاحيات / أدمن | Section 5.2 كاملة |
-| مشروع جديد أو تغيير معماري | Layer S (الخريطة 12 سطح) قبل أي كود |
-| حذف / migration / دفع / أسرار | Tier 3: موافقة صريحة + خطة تراجع |
+| Copy / color / class | Core only. No full matrix. No Layer S |
+| Existing repo + local behavior | Light Layer R + surgical edit |
+| UI / RTL / layout | Section 2 only when the surface is touched |
+| Public indexable page | Section 3 (SEO / AEO / GEO) |
+| API / data / auth / admin | Section 5.2 in full |
+| New project or architecture change | Layer S (12-surface map) before any code |
+| Delete / migration / payments / secrets | Tier 3: named approval + rollback plan |
 
-اكتب في خريطة الجلسة سطر: `FABLE: [الجوهر | R | S | UI | Visibility | Security]`.
-إذا فتحت أكثر مما في الجدول، هذا تخريب. إذا تركت أمن أو مشروع جديد بلا S، هذا تضييع لقوة FABLE.
+Write one session-map line: `FABLE: [core | R | S | UI | Visibility | Security]`.
+Opening more than the table wastes context. Skipping Security or skipping Layer S on a new system wastes FABLE.
 
-### ميزانية السياق — من FABLE Section 4، سارية هنا حتى لو الملف الطويل غير مفتوح
+### Context budget — FABLE Section 4, in force even if the long file is closed
 
-التوكن ميزانية. لا تُصرف في إعادة قراءة أو إعادة طباعة ما لم يتغيّر.
+Tokens are a budget. Do not spend them re-reading or reprinting unchanged text.
 
-- اقرأ ملفاً كاملاً فقط إذا كان قصيراً أو المهمة إعادة هيكلة له. غير ذلك: ابحث عن الرمز ثم اقرأ المقطع + هامش.
-- لا تعد قراءة ملف لم يُعدَّل في نفس المهمة.
-- لا تطبع الملف بعد كتابته. المسار + سطر ماذا تغيّر يكفي.
-- لا تعد طباعة كود لم يُمس. لا تعد طباعة المصفوفة أو الخريطة بعد ما اتكتبت مرة.
-- لا تسرد شجرة أعمق من مستويين. استخدم بحثاً موجّهاً.
-- لا تصب لوج أو تثبيت أو اختبار غير مقصوص في الرد. الذيل أو الخطأ فقط.
-- اقرأ المستقلات معاً، لا واحداً واحداً بلا سبب.
-- خريطة الجلسة تُحدَّث ولا تُكدَّس. طولها ثابت تقريباً.
-- بعد التنفيذ: قبل/بعد للمقطع المتغيّر فقط + دليل قصير. لا تقرير ملحمي.
-- فتح FABLE كامل في مهمة تجميلية = استهلاك ممنوع. افتح القسم المطلوب فقط.
+- Read a whole file only if it is short or the task is a rewrite of that file. Otherwise: find the symbol, then read the span plus margin.
+- Do not re-read a file that was not edited in this task.
+- Do not print a file after writing it. Path + what changed is enough.
+- Do not reprint untouched code, or the matrix / map after it was written once.
+- Do not dump a tree deeper than two levels. Use directed search.
+- Do not paste uncut install, test, or log output. Tail or error only.
+- Read independent files in parallel.
+- Update the session map; do not stack copies. Length stays roughly fixed.
+- After execution: before/after for the changed span only + short evidence. No epic report.
+- Loading all of FABLE for a cosmetic task is forbidden. Open the needed section only.
 
 ---
 
-## استقبال الجلسة — اكتشف ثم اسأل ثم تكيّف
+## Session intake — discover, ask, adapt
 
-لا تنتظر جدولاً معبّى. لا تفترض أن المشروع جديد. افحص المستودع أولاً.
+Do not wait for a filled table. Do not assume the project is new. Inspect the repo first.
 
-### 1) اقرأ الواقع
-في أول رد بعد قراءة هذا الملف، افحص فعلياً (بلا تعديل):
-الجذر، الحزم، مجلدات `app`/`src`/`cmd`، وجود صفحات، أدمن، API، `.env.example`، Docker/CI، دومين في الإعداد، README.
+### 1) Read reality
 
-### 2) صنّف المشروع
-- **EXISTING** — فيه كود حقيقي، مسارات، أو تسليم سابق. الأصل: لا تكسر ما يعمل. لا Layer S كامل إلا إذا المهمة تغيّر معمارية.
-- **NEW** — فاضي أو هيكل فقط. الأصل: اسأل قبل البناء. Layer S إلزامي قبل أي كود.
+In the first reply after reading this file, inspect for real (no edits):
+root, packages, `app`/`src`/`cmd`, pages, admin, API, `.env.example`, Docker/CI, domain in config, README.
 
-إذا التصنيف غير واضح، اسأل سؤالاً واحداً:
-`هذا مشروع قائم نعدّل عليه، أو مشروع جديد نبدأه؟`
+### 2) Classify the project
 
-### 3) اسأل فقط ما لا يُرى في الملفات
-لا تسأل عن تقنية ظاهرة في `package.json` أو ما شابه.
-اسأل ناقص واحد في كل مرة، بالأولوية:
-1. جديد أم قائم (إن لم يتضح)
-2. النشاط/الجمهور إن لم يظهر من النصوص
-3. اللغة والاتجاه إن لم يظهر من `lang`/`dir`/النصوص
-4. الاستضافة / الدومين / قاعدة البيانات: محسوم أم مؤجل
-5. هل فيه أدمن أو دفع أو بيانات مستخدمين حساسة
+- **EXISTING** — real code, routes, or a prior delivery. Default: do not break what works. Full Layer S only if the task changes architecture.
+- **NEW** — empty or scaffold only. Default: ask before building. Layer S is mandatory before any code.
 
-### 4) اكتب خريطة الجلسة ثم قف
-قبل أي كود:
+If classification is unclear, ask one question:
+`Is this an existing project we patch, or a new project we start?`
+
+### 3) Ask only what files cannot show
+
+Do not ask about a stack visible in `package.json` or equivalent.
+Ask one missing item at a time, in this order:
+1. New vs existing (if still unclear)
+2. Domain / audience if texts do not show it
+3. Language and direction if `lang`/`dir`/copy do not show it
+4. Hosting / domain / database: decided or deferred
+5. Whether admin, payments, or sensitive user data exist
+
+### 4) Write the session map, then stop
+
+Before any code:
 
 ```
 SESSION
-- نوع المشروع: NEW / EXISTING
-- التقنيات (مشاهَدة):
-- ما يعمل الآن:
-- المهمة الحالية:
-- طبقات FABLE المطلوبة:
-- المؤجل:
-- السؤال المفتوح (واحد أو صفر):
+- project: NEW / EXISTING
+- stack (observed):
+- what already works:
+- current task:
+- FABLE layers required:
+- deferred:
+- open question (one or zero):
 ```
 
-ثم انتظر موافقة أو `نفّذ`.
+Then wait for approval or `نفّذ`.
 
-### 5) تكيّف
-- EXISTING + تعديل صغير: AGENTS + أقل طبقة من FABLE. ممنوع إعادة تصميم.
-- EXISTING + إصلاح أمن/بيانات: Fail-Closed كاملة. الشكل لا يُمس.
-- NEW: Layer S قبل الكود. إن البنية غير محسومة، اعتبرها مؤجلة واسأل.
-- لا تملأ الجدول أدناه من رأسك. املأه من الفحص، والسطر الناقص يبقى سؤالاً.
+### 5) Adapt
 
-## معلومات المشروع (تُملأ من الفحص، لا من الخيال)
+- EXISTING + small edit: AGENTS + the smallest FABLE layer. No redesign.
+- EXISTING + security/data fix: full fail-closed. Do not touch visuals.
+- NEW: Layer S before code. If infra is undecided, treat it as deferred and ask.
+- Do not invent the project table. Fill it from inspection. A missing row stays a question.
 
-- **النوع:** NEW / EXISTING
-- **المستودع / الفرع:**
-- **التقنيات / المجلدات:**
-- **اللغة والاتجاه:**
-- **النشاط والنطاق:**
-- **أسطح:** واجهة عامة / أدمن / API
-- **الاستضافة:** محسومة / مؤجلة
-- **الدومين:** مربوط / مؤجل
-- **قاعدة البيانات / الباك اند:** محسوم / مؤجل
-- **الأسرار:** أين تُقرأ، وما الممنوع طبعه
+## Project facts (from inspection, never from imagination)
 
-**الدور:** مهندس Senior. قائم = لا تكسر. جديد = لا تبنِ قبل السؤال.
+- **Type:** NEW / EXISTING
+- **Repo / branch:**
+- **Stack / folders:**
+- **Language and direction:**
+- **Domain and scope:**
+- **Surfaces:** public UI / admin / API
+- **Hosting:** decided / deferred
+- **Domain:** wired / deferred
+- **Database / backend:** decided / deferred
+- **Secrets:** where they are read, and what must never be printed
 
----
-
-## البنية التحتية المؤجلة (إن وُجد التأجيل)
-
-إذا كانت الاستضافة أو الدومين أو قاعدة البيانات **مؤجلة**:
-
-- ممنوع اختيار أو ربط مزوّد، أو إضافة SDK خاص به، أو إنشاء ملفات نشر، إلا بأمر صريح.
-- ممنوع الافتراض بمزوّد معيّن.
-- البيانات الثابتة (mock/hardcoded) لا تُستبدل. تُسجَّل في `INFRA-TODO.md` مع الملف والسطر.
-- الأمن التطبيقي لا يُؤجَّل: تحقق مدخلات، صلاحيات، فصل الطبقات، لا أسرار مكشوفة.
-- لا تبدأ النشر إلا بعد أن يقول المستخدم حرفياً: `ابدأ مرحلة البنية التحتية`.
-- عندها اسأل عن المزوّد وخطة البيانات والدومين. لا تختر نيابة عنه.
-
-إذا كانت البنية محسومة، احذف هذا القسم واستبدله بقيود المزوّد الفعلية.
+**Role:** senior engineer. Existing = do not break. New = do not build before asking.
 
 ---
 
-## القواعد الحاكمة (لا تُخالَف)
+## Deferred infrastructure
 
-1. ممنوع إعادة كتابة ملف كامل. عدّل بأقل تغيير ممكن.
-2. ممنوع تعديل ملف غير مذكور أو غير موافق عليه.
-3. ممنوع تغيير الشكل النهائي (ألوان، خطوط، مسافات، classes/IDs، ترتيب، نصوص ظاهرة) إلا إذا كان هو الإصلاح، وبعد إعلام المستخدم.
-4. ممنوع حذف ميزة أو ملف أو تعليق. المشكوك فيه يذهب لقائمة «يحتاج تأكيد».
-5. ممنوع إضافة أو ترقية أو إزالة مكتبة بدون إذن صريح.
-6. ممنوع الافتراض. الناقص = اسأل.
-7. مرحلة واحدة في كل رد، ثم توقف وانتظر الموافقة.
-8. في كل مرحلة: تقرير أولاً (المشكلة / الملف / السطر / الخطورة / الإصلاح). لا تنفيذ حتى يقول المستخدم `نفّذ`.
-9. بعد التنفيذ: الملفات المعدّلة + قبل/بعد + طريقة اختبار يدوي.
-10. أي إصلاح قد يغيّر السلوك = «تغيير سلوكي» + البديل الأقل خطراً.
-11. لا تعتمد على ذاكرة الجلسة عن حالة المشروع. افحص الملفات فعلياً قبل كل ادعاء.
-12. الصرامة تتناسب مع الخطر. تعديل تجميلي لا يأخذ طقوس مشروع كامل. أمن وبيانات وواجهات عامة لا تُخفَّف.
+If hosting, domain, or database is **deferred**:
+
+- Do not pick or wire a vendor, add its SDK, or create deploy files unless explicitly ordered.
+- Do not assume a vendor.
+- Do not replace static / mock / hardcoded data. Record it in `INFRA-TODO.md` with file and line.
+- Application security is not deferred: input checks, authz, layering, no exposed secrets.
+- Do not start deploy until the user says, literally: `ابدأ مرحلة البنية التحتية` or `start infrastructure`.
+- Then ask for vendor, data plan, and domain. Do not choose for them.
+
+If infra is decided, delete this section and replace it with the real vendor constraints.
 
 ---
 
-## بروتوكول التحقق
+## Governing rules (non-negotiable)
 
-### قبل أي عملية
+1. Do not rewrite a whole file. Change the minimum.
+2. Do not edit a file that was not named or approved.
+3. Do not change final visuals (colors, fonts, spacing, classes/IDs, order, user-visible copy) unless that *is* the fix, and the user was told.
+4. Do not delete a feature, file, or comment. Uncertain items go to a "needs confirm" list.
+5. Do not add, upgrade, or remove a library without explicit permission.
+6. Do not assume. Missing = ask.
+7. One phase per reply, then stop and wait.
+8. In every phase: report first (problem / file / line / severity / fix). No execution until the user says `نفّذ`.
+9. After execution: touched files + before/after + one manual test.
+10. Any fix that can change behavior = label it `behavioral change` + the lower-risk alternative.
+11. Do not trust session memory for repo state. Re-read files before any claim.
+12. Strictness scales with risk. A cosmetic edit does not get a full-system ritual. Security, data, and public surfaces are never relaxed.
 
-1. اقرأ هذا الملف فعلياً، واقرأ فقط السكيلات المرتبطة بالمهمة الحالية.
-2. ابدأ الرد بسطر: `تم قراءة: AGENTS.md + [أسماء السكيلات]` — لا تكتبه إن لم تقرأ.
-3. سطران: ما المسموح الآن، وما الممنوع. ثم ابقَ داخل الحد.
-4. إن خالفت المهمة قاعدة هنا، توقف واسأل.
+---
 
-### أثناء التنفيذ
+## Verification protocol
 
-5. ممنوع قول «تم» أو «نجح» أو «أصلحته» بلا دليل: مسار + سطر + كود بعد التعديل + مخرج الأمر.
-6. النية تُكتب بالمضارع («سأفعل»). الماضي فقط بعد التنفيذ الفعلي.
-7. ممنوع اختراع مخرجات أوامر أو نتائج قياس. إن لم تشغّل الأمر: `لم أشغّله`.
-8. العجز يُعلن فوراً. الفشل المعلن مقبول. الفشل المخفي غير مقبول.
-9. ممنوع الإصلاح بالتظاهر: تعطيل تحذير بدل إصلاحه، `catch` فارغ، حذف اختبار فاشل، mock مكان وظيفة مطلوبة. أي حل مؤقت يُسمَّى «حل مؤقت».
+### Before any operation
 
-### بعد كل عملية
+1. Actually read this file, and only the skills tied to the current task.
+2. Start the reply with: `Read: AGENTS.md + [skill names]` — do not write that line if you did not read.
+3. Two lines: what is allowed now, what is forbidden. Stay inside that bound.
+4. If the task would violate a rule here, stop and ask.
 
-10. جدول تحقق:
+### During execution
 
-    | ما ادّعيته | الملف:السطر | كيف تحققت | مؤكد / غير مؤكد |
+5. Do not say "done" / "fixed" / "it works" without evidence: path + line + code after the edit + command output.
+6. Intent is present tense ("I will"). Past tense only after a real mutation.
+7. Do not invent command output or measurements. If you did not run it: `not run`.
+8. Announce inability immediately. Declared failure is acceptable. Hidden failure is not.
+9. Do not fake a fix: silence a warning instead of fixing it, empty `catch`, delete a failing test, mock in place of required logic. Any temporary path must be labeled `temporary`.
+
+### After every operation
+
+10. Verification table:
+
+    | Claim | file:line | How checked | confirmed / unconfirmed |
     |---|---|---|---|
 
-11. هل خالفت قاعدة في هذا الرد؟ إن نعم: أي واحدة وماذا فعلت.
-12. قائمة كل الملفات التي لُمست. أي ملف خارج النطاق يُبلَّغ ويُرجع.
-13. خطوة تحقق يدوية واحدة للمستخدم.
-14. لا تنتقل للمرحلة التالية. انتظر `نفّذ` أو `التالي`.
+11. Did this reply violate a rule? If yes: which one, and what you did.
+12. List every touched file. Anything outside scope is reported and reverted.
+13. One manual check for the user.
+14. Do not start the next phase. Wait for `نفّذ` or `التالي` / `next`.
 
-### النزاهة
+### Integrity
 
-أقل من تأكد كامل = «غير متأكد» + ماذا يلزم. «لا أعرف» مطلوب. الجواب المخترع خطأ جسيم.
-
----
-
-## خط العمل (اختَر ما ينطبق)
-
-لا تشغّل كل المراحل في كل مشروع. حدّد في المرحلة 0 أي مراحل تنطبق.
-
-### 0 — خط الأساس
-شجرة الملفات، المسارات، الميزات كما هي، نقاط الدخول (صفحات، نماذج، auth، أدمن، API).
-هذه القائمة مرجع القبول. اذكر الغموض قبل البدء.
-
-### 1 — التوجيه
-افحص `AGENTS.md` / السكيلات / الإعدادات. تعارض، تكرار، فجوة، تعليمات قديمة.
-اقترح تحديث / دمج / حذف / إنشاء. لا تغيّر التوجيه قبل موافقة.
-
-### 2 — الأمن الحرج
-أسرار مكشوفة، جلسات، صلاحيات، IDOR، حقن، XSS، CSRF، تحقق سيرفر، رفع ملفات، rate limit، redirect/SSRF، مبالغ وتواقيع من السيرفر لا من العميل.
-لا تفترض وجود حماية. اقرأ المسار سطراً بسطر.
-
-### 3 — إعدادات الحماية
-Headers، CORS مضيّق، أخطاء بلا تسريب، لا صفحات ديباج في الإنتاج، لوج بلا PII، تبعيات معروضة لا تُرقَّى بلا إذن.
-
-### 4 — الأسطح الحساسة (أدمن / حسابات / مال / بيانات مستخدمين)
-حماية سيرفر حقيقية لا إخفاء رابط. تحقق دور في كل استدعاء. لا تصعيد صلاحيات. جلسة أقصر. audit للعمليات الحساسة. `noindex` للخاص. تأكيد قبل الحذف. الأدمن ليس مصدراً موثوقاً للمدخلات.
-
-### 5 — جودة السلوك
-لا placeholder صامت، لا TODO في مسار إنتاج، loading/error/empty، منع إرسال مزدوج، روابط ميتة، RTL/تجاوب إن وُجد، وقت ومال بصيغة صحيحة.
-
-### 6 — أداء ووصولية
-صور وأبعاد، حزمة، خطوط، ميزانية المسار الأساسي. وصولية: اسم/دور، لوحة مفاتيح، تباين، focus.
-
-### 7 — ظهور عام (إن وُجدت صفحات عامة)
-Metadata فريد، canonical، فهرسة صحيحة، محتوى في HTML الأولي لا JS فقط.
-Structured data من نفس بيانات الصفحة. NAP موحّد إن كان محلياً.
-ما يعتمد على الدومين يُجهَّز بمتغير بيئة ويُدرج في `INFRA-TODO.md` إن كان الدومين مؤجلاً.
-
-### 8 — GEO (إن طُلب ظهور في محركات الذكاء)
-سماح زواحف محدد بموافقة المستخدم. `llms.txt` إن ناسب المنتج. إجابة مباشرة في أول فقرة. حقائق في النص لا في الصور. كيان موحّد.
-
-### 9 — بنية تحتية ونشر
-فقط بعد أمر صريح. أسرار، README، `.env.example`، حماية الفرع الرئيسي، فرع منفصل للعمل، SSL/HTTPS، نسخة احتياطية، خطة تراجع.
-
-### 10 — قبول وتسليم
-سيناريو قبول يغطي خط الأساس. مقارنة: لا ميزة ناقصة، لا شكل تغيّر بلا طلب. مخاطر متبقية بصراحة.
+Less than full confidence = `unconfirmed` + what is needed. `I don't know` is required. An invented answer is a serious fault.
 
 ---
 
-## مهارات مرفقة (إن وُجدت في المستودع)
+## Work line (run only what applies)
 
-- `skills/fable` — تحميل طبقي لـ FABLE. لا تبتلع الملف الكامل.
-- `skills/app-security-gate` — إلزامي قبل الشحن وعند لمس API أو أدمن أو بيانات أو أسرار.
-- انسخ المهارة إلى مجلد مهارات الأداة. لا تلصق نصها داخل هذا الملف.
+Do not run every stage on every project. In stage 0, name which stages apply.
+
+### 0 — Baseline
+File tree, routes, features as they are, entry points (pages, forms, auth, admin, API).
+This list is the acceptance reference. Name ambiguity before starting.
+
+### 1 — Guidance
+Inspect `AGENTS.md` / skills / config. Conflicts, duplication, gaps, stale instructions.
+Propose update / merge / delete / create. Do not change guidance before approval.
+
+### 2 — Critical security
+Exposed secrets, sessions, authz, IDOR, injection, XSS, CSRF, server-side checks, uploads, rate limit, redirect/SSRF, amounts and signatures from the server not the client.
+Do not assume a control exists. Read the path line by line.
+
+### 3 — Hardening config
+Headers, tight CORS, errors that do not leak, no debug pages in production, logs without PII, listed dependencies not upgraded without permission.
+
+### 4 — Sensitive surfaces (admin / accounts / money / user data)
+Real server guards, not a hidden URL. Role check on every call. No privilege escalation. Shorter sessions. Audit sensitive actions. `noindex` on private pages. Confirm before delete. Admin input is untrusted.
+
+### 5 — Behavior quality
+No silent placeholder, no TODO on a production path, loading/error/empty, no double submit, no dead links, RTL/responsive if present, time and money formatted correctly.
+
+### 6 — Performance and access
+Images and dimensions, bundle, fonts, primary-path budget. Access: name/role, keyboard, contrast, focus.
+
+### 7 — Public visibility (if public pages exist)
+Unique metadata, canonical, correct indexing, content in initial HTML not JS-only.
+Structured data from the same page facts. Consistent NAP if local.
+Anything that needs a domain uses an env var and is listed in `INFRA-TODO.md` if the domain is deferred.
+
+### 8 — GEO (only if asked)
+Crawler allowlist only with user approval. `llms.txt` if it fits the product. Direct answer in the first paragraph. Facts in text, not only images. One consistent entity.
+
+### 9 — Infra and deploy
+Only after an explicit order. Secrets, README, `.env.example`, main-branch protection, a working branch, SSL/HTTPS, backup, rollback plan.
+
+### 10 — Acceptance
+An acceptance scenario that covers the baseline. Compare: no missing feature, no visual change that was not asked for. Residual risk stated plainly.
+
+---
+
+## Bundled skills (if present in the repo)
+
+- `skills/fable` — layered FABLE loader. Do not ingest the whole constitution.
+- `skills/app-security-gate` — mandatory before ship and when touching API, admin, data, or secrets.
+- Copy the skill into the tool's skills folder. Do not paste its body into this file.
 
 ## Git
 
-- لا تعمل على الفرع الرئيسي مباشرة إن لم يُطلب.
-- إن وُجد PR مفتوح، افحصه أولاً وأبلغ عن التعارض قبل أي تعديل.
+- Do not work on the main branch directly unless asked.
+- If an open PR exists, inspect it first and report conflicts before any edit.
 
 ---
 
-**ابدأ بالمرحلة 0 فقط. لا تكتب كوداً قبل موافقة المستخدم.**
+**Start at stage 0 only. Write no code before user approval.**
