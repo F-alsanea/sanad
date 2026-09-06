@@ -8,6 +8,16 @@ Do not say the app is secure unless all seven are `PASS` with evidence.
 Running `scripts/scan-secrets.sh` is read-only. It does not require `نفّذ`.
 Rotation, history rewrite, deletes, and any file write require `نفّذ`.
 
+## Evidence bar (FABLE §9.4)
+
+A `where: { userId }` line in source is not enough for G4 or G6 `PASS`.
+
+- **FAIL:** missing control, or a control that can be skipped (hidden URL, client filter, body-supplied owner).
+- **UNVERIFIED (maximum from reading code):** the deny path is visible at `file:line` but was not exercised.
+- **PASS:** deny path exercised — command output, failing request without a session, or a test that sends another user's id and is rejected. Quote the output. If you did not run it, write `not run` and keep the gate `UNVERIFIED`.
+
+"Mental test" below is how to design the check. It is not a substitute for running it.
+
 ## G1 — Hide API keys
 
 **Pass:** no secret in client bundles, committed files, images, or logs. Client may hold only keys designed to be public.
@@ -42,20 +52,20 @@ Rotation, history rewrite, deletes, and any file write require `نفّذ`.
 - Prisma/Drizzle imported from a client component
 - Firebase Admin SDK in the app binary
 
-**Mental test:** if the attacker extracts every string from the bundle, can they write every row?
+**Design the check:** if the attacker extracts every string from the bundle, can they write every row?
 
 ## G4 — Row-level security (or equivalent isolation)
 
-**Pass:** every table (or collection) with per-user or per-tenant rows has enforced isolation. Owner is taken from the session, not from the body.
+**Pass:** every table (or collection) with per-user or per-tenant rows has enforced isolation. Owner is taken from the session, not from the body. Deny path exercised (see Evidence bar).
 
 **Fail examples**
 - `USING (true)` / `allow read, write: if true` on a sensitive table
 - RLS enabled with no policy (default deny is fail-closed only if the app still functions; document it)
 - Filter only in the UI or only in a client query
 
-**Mental test:** user changes `id` in the request. They must not see or write another row.
+**Design the check:** user changes `id` in the request. They must not see or write another row. Reading `where: { userId: session.user.id }` alone → `UNVERIFIED`, not `PASS`.
 
-**Non-Supabase:** Prisma with one privileged `DATABASE_URL` and no Postgres policies = app-layer authz only. Mark G4 `FAIL` or `UNVERIFIED` unless equivalent isolation is proven in every query. Do not call it RLS.
+**Non-Supabase:** Prisma with one privileged `DATABASE_URL` and no Postgres policies = app-layer authz only. Mark G4 `FAIL` or `UNVERIFIED` unless equivalent isolation is proven in every query **and** the deny path was exercised. Do not call it RLS.
 
 ## G5 — Encrypt sensitive data
 
@@ -68,7 +78,7 @@ Rotation, history rewrite, deletes, and any file write require `نفّذ`.
 
 ## G6 — Server-side authentication
 
-**Pass:** identity, role, and row ownership are decided on the server before read or write. Missing session = deny.
+**Pass:** identity, role, and row ownership are decided on the server before read or write. Missing session = deny. Deny path exercised (see Evidence bar).
 
 **Fail examples**
 - Admin route protected only by hiding `/admin`
@@ -76,7 +86,7 @@ Rotation, history rewrite, deletes, and any file write require `نفّذ`.
 - Role accepted from a client field
 - Client-only `localStorage` "logged in"
 
-**Mental test:** call the write action with no cookie. It must fail closed.
+**Design the check:** call the write action with no cookie. It must fail closed. Locating `requireAdmin` at `file:line` without running a request → `UNVERIFIED`, not `PASS`.
 
 ## G7 — Secure logs
 

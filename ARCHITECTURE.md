@@ -40,11 +40,12 @@ AGENTS = municipal law.
 
 1. The user's explicit order for this task.
 2. `AGENTS.md`: scope, phases, approval, files, deferred infra.
-3. FABLE is not waived on: fail-closed, zero placeholders, read-before-write, no claim without evidence.
+3. FABLE is not waived on: fail-closed, zero placeholders, read-before-write, no claim without evidence, risk tiers.
 4. The rest of FABLE only for surfaces this task touches.
 
 AGENTS does not relax security.
 FABLE does not widen project scope.
+Risk tiers 0–3 live only in FABLE Section 10.1. Guessing a private scale is forbidden.
 
 ## When FABLE layers open
 
@@ -55,6 +56,7 @@ FABLE does not widen project scope.
 | UI / RTL | Section 2 |
 | Public page | Section 3 |
 | API / data / admin | Section 5.2 |
+| Classify risk / choose ritual | Section 10.1 |
 | New project or architecture change | Layer S before code |
 | Delete / migration / push / secrets | Tier 3 + approval |
 

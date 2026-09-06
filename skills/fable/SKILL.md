@@ -3,7 +3,7 @@ name: fable
 description: Sanad engineering loader for AI agents. Use when starting a session, designing architecture, writing or reviewing code, touching UI, public pages, auth, data, or security. Load only the FABLE layer the current task needs. Triggers include سند, Sanad, FABLE, AGENTS.md, Layer S, Diagnostic Matrix, نفّذ, fail-closed.
 license: MIT
 metadata:
-  version: "2.3.0"
+  version: "2.3.1"
   type: workflow
   source: FABLE.md
 ---
@@ -14,7 +14,8 @@ This skill does not ingest the full constitution. The constitution lives at repo
 The project law lives at the user's app root: `AGENTS.md`.
 
 If both exist: AGENTS wins on scope, phases, waiting for `نفّذ`, and deferred infra.
-FABLE wins on fail-closed, zero placeholders, evidence before "done", and read-before-write.
+FABLE wins on fail-closed, zero placeholders, evidence before "done", read-before-write, and risk tiers.
+Risk tiers 0–3 are defined only in **FABLE Section 10.1**. If that section is not loaded, mark the tier `unconfirmed`.
 
 ## On session start
 
@@ -33,6 +34,7 @@ FABLE wins on fail-closed, zero placeholders, evidence before "done", and read-b
 | UI / RTL | Section 2 |
 | Public indexable page | Section 3 |
 | API / data / admin / secrets | Section 5.2 + skill `app-security-gate` |
+| Classify risk / choose ritual | Section 10.1 — do not guess the tier |
 | New project or architecture change | Layer S (12-surface map) before any code |
 | Delete / migration / payments | Tier 3 + approval that names the blast radius |
 
@@ -44,7 +46,7 @@ Opening more than the table wastes context. Skipping Layer S on a new system is 
 - No incomplete code and no TODO on a production path.
 - No "done" without an artifact (`file:line` or command output).
 - Auth and data security stay fail-closed even when hosting is deferred.
-- Strictness scales with risk.
+- Strictness scales with risk. Tiers live in Section 10.1.
 
 ## File locations
 

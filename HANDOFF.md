@@ -8,7 +8,7 @@ Human note: هذا الملف ذاكرة المشروع بين الوكلاء. �
 
 ## Current phase
 
-**v0.1 package — Claude review gaps closed: gates.md shipped, orphan Arabic template removed, `نفّذ` vs scan clarified.**
+**v0.1 package — second Claude review closed: §10.1 on fable skill + ARCHITECTURE; G4/G6 PASS needs exercised deny path.**
 
 ## Repository baseline
 
@@ -28,37 +28,36 @@ Human note: هذا الملف ذاكرة المشروع بين الوكلاء. �
 - Public repo created and branded Sanad.
 - Full `FABLE.md` on `main`.
 - `AGENTS.md` converted to English; `نفّذ` kept as the mutation token.
-- `skills/fable/SKILL.md` English loader (does not ingest all of FABLE).
-- `skills/app-security-gate` present with scanner script and Arabic user prompt.
-- `skills/app-security-gate/references/gates.md` present (seven gates + attack expansion).
-- Orphan `AGENTS-template.md` (Arabic machine contract) removed.
-- `templates/AGENTS.md` is a full offline English copy of the root contract, not a pointer.
-- README shows profile avatar via `https://github.com/F-alsanea.png`.
-- Language split decided: agent files English, human docs Arabic.
-- Risk-tier lookup points at FABLE Section 10.1.
-- Read-only `scan-secrets.sh` does not wait for `نفّذ`; writes still do.
+- `skills/fable/SKILL.md` English loader; table includes Section 10.1.
+- `ARCHITECTURE.md` layer table includes Section 10.1.
+- `skills/app-security-gate` + `references/gates.md`.
+- G4/G6 `PASS` requires an exercised deny path; code-only read is `UNVERIFIED`.
+- Orphan `AGENTS-template.md` removed. `templates/AGENTS.md` is a full English copy.
+- Language split: agent files English, human docs Arabic.
+- Read-only `scan-secrets.sh` does not wait for `نفّذ`.
 
 ## Do not
 
 - Do not merge AGENTS into FABLE or FABLE into AGENTS.
 - Do not load all of FABLE for a copy/color change.
 - Do not claim an app is secure unless the seven security gates are PASS with evidence.
+- Do not give G4 or G6 PASS from `file:line` alone.
 - Do not put real API keys or `.env` values in this repository.
 - Do not rewrite Git history unless the owner names the remote and says `نفّذ`.
-- Do not recreate `AGENTS-template.md` in Arabic. Machine contract stays English.
+- Do not recreate `AGENTS-template.md` in Arabic.
 
 ## Open gaps
 
 - No `v0.1.0` git tag yet.
 - Repo description / topics on GitHub may still need a pass.
-- Precedence text is still restated in AGENTS, FABLE, ARCHITECTURE, and `skills/fable` — keep them aligned when one changes.
+- Precedence text is still restated in AGENTS, FABLE, ARCHITECTURE, and `skills/fable` — keep them aligned when one changes. §10.1 lookup is now in all four layer tables.
 
 ## Verification state
 
-- `✅ Confirmed`: `FABLE.md` on GitHub starts with FABLE 5.1 v2.3.0 and is the long constitution (~119KB).
+- `✅ Confirmed`: `FABLE.md` on GitHub starts with FABLE 5.1 v2.3.0 (~119KB).
 - `✅ Confirmed`: root `AGENTS.md` is the English operating law.
-- `✅ Confirmed`: `references/gates.md` exists beside `stack-adapters.md`.
-- `✅ Confirmed`: `AGENTS-template.md` is gone from the tree.
+- `✅ Confirmed`: `references/gates.md` exists; evidence bar for G4/G6 written.
+- `✅ Confirmed`: fable skill + ARCHITECTURE name Section 10.1.
 - `Not applicable`: app tests, deploy, database.
 
 ## How the next agent starts
@@ -74,4 +73,4 @@ Human note: هذا الملف ذاكرة المشروع بين الوكلاء. �
 Keep this file current after every approved change. Next product step, only if the owner asks: tag `v0.1.0`.
 
 Last updated: 2026-09-06
-Last writer: Grok (Claude-review gap close)
+Last writer: Grok (second Claude-review close)
