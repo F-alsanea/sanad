@@ -1,7 +1,11 @@
+<p align="center">
+  <img src="https://github.com/F-alsanea.png" width="96" height="96" alt="Faisal Alsanea" style="border-radius:50%" />
+</p>
+
 # سند / Sanad
 
-نظام تشغيل لوكلاء البرمجة، من فيصل السني.  
-An operating system for coding agents, by Faisal Alsanea.
+نظام تشغيل لوكلاء البرمجة، من [فيصل الصانع](https://github.com/F-alsanea).  
+An operating system for coding agents, by [Faisal Alsanea](https://github.com/F-alsanea).
 
 ليس برومبت يُلصق في الشات. ثلاثة طبقات، كل واحدة لها شغل.
 
@@ -111,4 +115,8 @@ Do not merge AGENTS into FABLE. Do not claim the app is secure unless all seven 
 
 ---
 
-MIT. Built by [Faisal Alsanea](https://github.com/F-alsanea).
+<p align="left">
+  <img src="https://github.com/F-alsanea.png" width="40" height="40" alt="Faisal Alsanea" />
+  &nbsp; MIT. Built by <a href="https://github.com/F-alsanea">Faisal Alsanea</a>
+  · <a href="https://x.com/thsfaisal">@thsfaisal</a>
+</p>
