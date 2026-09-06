@@ -11,32 +11,33 @@ metadata:
 
 # App Security Gate
 
-بوابة أمنية fail-closed قبل الشحن. لا تثق بواجهة مخفية ولا بمفتاح «مخفي في الفرونت». لا تطبع قيمة سر أبداً.
+Fail-closed pre-ship gate. Do not trust a hidden UI or a key "hidden in the frontend". Never print a secret value.
 
-FABLE Layer: Security (Section 5.2). Risk tier: 3.
-إن وُجد `AGENTS.md`: تقرير ثم انتظار `نفّذ`. لا تلمس ملفاً قبل الموافقة إلا إذا أمر المستخدم بالتنفيذ صراحة في نفس الرسالة.
+FABLE layer: Security (Section 5.2). Risk tier: 3.
+If `AGENTS.md` exists: report, then wait for `نفّذ`. Touch no file before approval unless the user ordered execution in this same message.
 
-اقرأ عند الحاجة:
-- `references/gates.md` — إجراءات البوابات السبع + توسيع الهجوم
-- `references/stack-adapters.md` — أين تبحث حسب الإطار
-- `assets/report-template.md` — شكل التقرير
-- `scripts/scan-secrets.sh` — مسح أنماط أسرار بلا طباعة القيم
+Read on demand:
+- `references/gates.md` — seven gates plus attack expansion
+- `references/stack-adapters.md` — where to look by framework
+- `assets/report-template.md` — report shape
+- `scripts/scan-secrets.sh` — pattern scan that redacts values
+- `assets/user-prompt-ar.md` — Arabic paste prompt for humans
 
-## قواعد مطلقة
+## Absolute rules
 
-1. **لا تطبع سراً.** مسار + نوع + أسطر فقط.
-2. **لا تعدّل قبل التقرير** إلا بأمر `نفّذ` صريح.
-3. **لا تخفف حكماً.** وجود مكتبة auth ليس مصادقة.
-4. **العميل غير موثوق.** أي قرار مال أو دور أو ملكية صف يُعاد على الخادم.
-5. **Fail-closed.** جلسة ناقصة = رفض.
-6. **لا تختر مزود بنية** إن كانت مؤجلة في AGENTS.
-7. **Git history ليس working tree.** افحص الاثنين.
-8. **المفتاح العام فقط في العميل:** anon / publishable. `service_role` في عميل = Critical.
+1. Never print a secret. Path + kind + line numbers only.
+2. Do not edit before the report unless the user said `نفّذ`.
+3. Do not soften a verdict. An auth library is not authentication. RLS on one table is not isolation. `noindex` is not access control.
+4. The client is untrusted. Money, role, price, or row ownership is re-derived on the server.
+5. Fail-closed. Missing session or failed verification = deny.
+6. Do not pick an infra vendor if AGENTS marks infra deferred.
+7. Git history is not the working tree. Inspect both.
+8. Only public-by-design keys belong on the client. `service_role` on a client = Critical.
 
-## البوابات السبع
+## Seven gates
 
-G1 مفاتيح API | G2 أسرار Git | G3 مفتاح DB العام فقط | G4 RLS | G5 تشفير | G6 مصادقة خادم | G7 سجلات.
+G1 hide API keys | G2 secrets out of Git | G3 public DB key only | G4 RLS | G5 encrypt sensitive data | G6 server-side auth | G7 secure logs.
 
-التفاصيل في `references/gates.md`. التقرير في `assets/report-template.md`.
+Details: `references/gates.md`. Report: `assets/report-template.md`.
 
-لا تقل «آمن» إلا إذا البوابات السبع PASS بدليل.
+Do not say the app is secure unless all seven gates are PASS with evidence.
