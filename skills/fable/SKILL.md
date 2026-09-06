@@ -8,49 +8,49 @@ metadata:
   source: FABLE.md
 ---
 
-# FABLE — محرّك المهندس
+# FABLE — engineer loader
 
-هذا السكيل لا يبتلع الدستور كاملاً. الدستور في جذر المستودع: `FABLE.md`.
-قانون المشروع في جذر مشروع المستخدم: `AGENTS.md`.
+This skill does not ingest the full constitution. The constitution lives at repo root: `FABLE.md`.
+The project law lives at the user's app root: `AGENTS.md`.
 
-إن وُجد الاثنان: AGENTS يفوز في النطاق والمراحل وانتظار `نفّذ` والبنية المؤجلة.
-FABLE يفوز في fail-closed وصفر placeholders والدليل قبل «تم» واقرأ-قبل-اكتب.
+If both exist: AGENTS wins on scope, phases, waiting for `نفّذ`, and deferred infra.
+FABLE wins on fail-closed, zero placeholders, evidence before "done", and read-before-write.
 
-## عند تفعيل الجلسة
+## On session start
 
-1. اقرأ `AGENTS.md` إن وُجد.
-2. افحص المستودع بلا تعديل.
-3. صنّف NEW أو EXISTING.
-4. اكتب خريطة الجلسة. سطر FABLE يحدد الطبقة المفتوحة فقط.
-5. لا تكتب كوداً قبل `نفّذ` إلا إذا أمر المستخدم بالتنفيذ صراحة في نفس الرسالة.
+1. Read `AGENTS.md` if present.
+2. Inspect the repository with no edits.
+3. Classify NEW or EXISTING.
+4. Write the session map. One FABLE line names the open layer only.
+5. Write no code before `نفّذ` unless the user ordered execution in this same message.
 
-## أي طبقة تُفتح
+## Which layer to open
 
-| المهمة | اقرأ من FABLE.md |
+| Task | Read from FABLE.md |
 |---|---|
-| نص / لون / class | الجوهر فقط. لا Layer S. لا مصفوفة كاملة |
-| سلوك محلي في قائم | Layer R خفيف |
+| Copy / color / class | Core only. No Layer S. No full matrix |
+| Local behavior in an existing app | Light Layer R |
 | UI / RTL | Section 2 |
-| صفحة عامة قابلة للفهرسة | Section 3 |
-| API / بيانات / أدمن / أسرار | Section 5.2 + سكيل `app-security-gate` |
-| مشروع جديد أو تغيير معماري | Layer S (الخريطة 12 سطحاً) قبل أي كود |
-| حذف / migration / دفع | Tier 3 + موافقة تسمي الأثر |
+| Public indexable page | Section 3 |
+| API / data / admin / secrets | Section 5.2 + skill `app-security-gate` |
+| New project or architecture change | Layer S (12-surface map) before any code |
+| Delete / migration / payments | Tier 3 + approval that names the blast radius |
 
-فتح أكثر من الجدول = هدر سياق. ترك مشروع جديد بلا Layer S = مخالفة.
+Opening more than the table wastes context. Skipping Layer S on a new system is a violation.
 
-## جوهر لا يُطفأ
+## Core that never turns off
 
-- اقرأ الملف قبل تعديله.
-- لا كود ناقص ولا TODO في مسار إنتاج.
-- لا «تم» بلا أثر (ملف:سطر أو مخرج أمر).
-- أمن الصلاحيات والبيانات fail-closed حتى لو الاستضافة مؤجلة.
-- الصرامة على قدر الخطر.
+- Read the file before you edit it.
+- No incomplete code and no TODO on a production path.
+- No "done" without an artifact (`file:line` or command output).
+- Auth and data security stay fail-closed even when hosting is deferred.
+- Strictness scales with risk.
 
-## أين الملفات
+## File locations
 
-- الدستور الكامل: `../../FABLE.md` إن كان هذا السكيل داخل حزمة `sanad`، وإلا ابحث عن `FABLE.md` في جذر المشروع.
-- التشغيل: `../../ARCHITECTURE.md`
-- قالب قانون المشروع: `../../templates/AGENTS.md`
-- بوابة الأمن: `../app-security-gate/SKILL.md`
+- Full constitution: `../../FABLE.md` when this skill ships inside the `sanad` package; otherwise search the project root for `FABLE.md`.
+- Runtime map: `../../ARCHITECTURE.md`
+- Project-law template: `../../templates/AGENTS.md`
+- Security gate: `../app-security-gate/SKILL.md`
 
-لا تلصق FABLE في الشات. اقرأ القسم المطلوب فقط.
+Do not paste FABLE into chat. Read the required section only.

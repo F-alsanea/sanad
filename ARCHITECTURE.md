@@ -1,89 +1,73 @@
-# معمارية التشغيل — سند
+# Runtime architecture — Sanad
 
-سند اسم الأداة. FABLE الدستور. AGENTS قانون المشروع. ملفين داخليين، كل واحد له شغل واحد.
+Sanad is the product name. FABLE is the constitution. AGENTS is the project law.
+Two internal files. One job each.
+
+Human docs (`README.md`, `docs/`) are Arabic-first.
+Agent contracts (`FABLE.md`, `AGENTS.md`, `skills/*/SKILL.md`) are English.
 
 ```
-المستخدم
+User
    ↓
-AGENTS.md          قانون هذا المشروع (خفيف، يتكيّف)
-   ↓ يسحب طبقة واحدة فقط
-FABLE.md           المعيار الهندسي (كامل، لا يُحمَّل كله كل مرة)
+AGENTS.md          law of this project (thin, adapted)
+   ↓ loads one layer only
+FABLE.md           engineering standard (full, never loaded whole)
 ```
 
-لا يُدمجان في ملف واحد. الدمج يعيد مشكلة الـ 1500 سطر.
+Do not merge them into one file. The merge recreates the 1500-line problem.
 
----
+## Roles
 
-## الدور
-
-| الملف | المكان | الوظيفة |
+| File | Place | Job |
 |---|---|---|
-| `FABLE.md` | سكيل في الأداة، أو `skills/fable/SKILL.md` | كيف يفكر المودل كمهندس |
-| `AGENTS.md` | جذر كل مستودع | ماذا يُسمح في هذا المشروع الآن |
+| `FABLE.md` | package skill, or `skills/fable/SKILL.md` | how the model thinks as an engineer |
+| `AGENTS.md` | root of every app repo | what is allowed in this project now |
 
-FABLE = الدستور.  
-AGENTS = قانون البلدية.
+FABLE = constitution.
+AGENTS = municipal law.
 
----
+## Session flow
 
-## تدفق الجلسة
+1. The agent reads `AGENTS.md`.
+2. It inspects the repository with no edits.
+3. It classifies `NEW` or `EXISTING`.
+4. If unclear, it asks one question.
+5. It writes the session map and names the required FABLE layers.
+6. It waits for `نفّذ` before any code.
+7. It executes the smallest change, then evidence (`file:line` or command output).
 
-1. الوكيل يقرأ `AGENTS.md`.
-2. يفحص المستودع بلا تعديل.
-3. يصنّف: `NEW` أو `EXISTING`.
-4. إن لم يتضح، يسأل سؤالاً واحداً.
-5. يكتب خريطة الجلسة ويحدد طبقات FABLE المطلوبة.
-6. ينتظر `نفّذ` قبل أي كود.
-7. ينفّذ بأقل تعديل، ثم دليل (ملف:سطر أو مخرج أمر).
+## Who wins on conflict
 
----
+1. The user's explicit order for this task.
+2. `AGENTS.md`: scope, phases, approval, files, deferred infra.
+3. FABLE is not waived on: fail-closed, zero placeholders, read-before-write, no claim without evidence.
+4. The rest of FABLE only for surfaces this task touches.
 
-## من يفوز عند التعارض
+AGENTS does not relax security.
+FABLE does not widen project scope.
 
-1. أمر المستخدم الصريح لهذه المهمة.
-2. `AGENTS.md`: النطاق، المراحل، الموافقة، الملفات، البنية المؤجلة.
-3. FABLE لا يُلغى في: fail-closed، صفر placeholders، اقرأ قبل اكتب، لا ادّعاء بلا دليل.
-4. باقي FABLE حسب ما تلمسه المهمة فقط.
+## When FABLE layers open
 
-AGENTS لا يرخّي الأمن.  
-FABLE لا يوسّع نطاق المشروع.
-
----
-
-## متى تُفتح طبقات FABLE
-
-| المهمة | FABLE |
+| Task | FABLE |
 |---|---|
-| نص / لون / class | الجوهر فقط |
-| سلوك محلي في مشروع قائم | Layer R خفيف |
+| Copy / color / class | Core only |
+| Local behavior in an existing app | Light Layer R |
 | UI / RTL | Section 2 |
-| صفحة عامة | Section 3 |
-| API / بيانات / أدمن | Section 5.2 |
-| مشروع جديد أو تغيير معماري | Layer S قبل الكود |
-| حذف / migration / دفع / أسرار | Tier 3 + موافقة |
+| Public page | Section 3 |
+| API / data / admin | Section 5.2 |
+| New project or architecture change | Layer S before code |
+| Delete / migration / push / secrets | Tier 3 + approval |
 
-فتح أكثر = تخريب.  
-ترك مشروع جديد بلا Layer S = تضييع القوة.
+Opening more = waste.
+Leaving a new project without Layer S = wasting the system.
 
----
+## Do not
 
-## جوهر FABLE الذي لا يُطفأ
+- Do not put AGENTS inside FABLE.
+- Do not put all of FABLE inside AGENTS.
+- Do not fork a FABLE per project type.
+- Do not ask the user to read 1500 lines.
 
-- اقرأ قبل التعديل.
-- لا كود ناقص ولا TODO في مسار إنتاج.
-- لا «تم» بلا أثر.
-- أمن الصلاحيات والبيانات fail-closed حتى لو الاستضافة مؤجلة.
-- الصرامة على قدر الخطر.
-
----
-
-## ما لا يُفعل
-
-- لا تضع AGENTS داخل FABLE.
-- لا تضع FABLE كامل داخل AGENTS.
-- لا تنشئ نسخة FABLE لكل نوع مشروع.
-- لا تطلب من المستخدم قراءة 1500 سطر.
-
-العام في FABLE.  
-الخاص في AGENTS.  
-التشغيل في هذا الملف.
+General rules live in FABLE.
+Project rules live in AGENTS.
+Runtime rules live in this file.

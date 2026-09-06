@@ -1,19 +1,15 @@
-# AGENTS.md — قواعد العمل في هذا المستودع
+# Copy this file to the root of your app as `AGENTS.md`.
 
-انسخ هذا الملف إلى جذر مشروعك باسم `AGENTS.md`.
+This template is the English machine contract. Human docs stay Arabic in Sanad README.
+The approval token is `نفّذ` (or `execute`).
 
-عند التعارض: هذا الملف يفوز في النطاق والمراحل و`نفّذ`. FABLE يفوز في fail-closed والدليل قبل «تم».
+Use the root file as the source of truth:
 
-## جوهر دائم
+https://github.com/F-alsanea/sanad/blob/main/AGENTS.md
 
-- اقرأ قبل التعديل.
-- لا كود قبل `نفّذ`.
-- لا TODO في مسار إنتاج.
-- لا ادّعاء بلا دليل.
-- الأمن fail-closed.
+If you are copying offline, copy `../AGENTS.md` from this package over this file after clone.
 
-## استقبال
+---
 
-افحص بلا تعديل → صنّف NEW/ـEXISTING → خريطة جلسة → انتظر `نفّذ`.
-
-قبل الشحن: اقرأ `skills/app-security-gate`.
+Start every session with: read `AGENTS.md`, inspect with no edits, classify NEW or EXISTING, write the session map, wait for `نفّذ`.
+Before ship: load `skills/app-security-gate`.
