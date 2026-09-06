@@ -18,6 +18,7 @@ This file runs the project. FABLE supplies engineering force. Do not paste FABLE
 
 - This file wins on: scope, phase order, waiting for `نفّذ`, allowed files, deferred infrastructure.
 - FABLE wins on: fail-closed, zero placeholders, evidence before "done", read-before-write, risk tiers.
+- Risk tiers 0–3 are defined only in **FABLE Section 10.1**. Do not invent a private scale. If that section is not loaded, mark the tier `unconfirmed`.
 - If a FABLE skill or `FABLE.md` is present, load **only the section the task needs**. If it is not loaded, apply the compact core below. Do not drop quality because the long file is closed.
 
 ### FABLE core — always on
@@ -38,6 +39,7 @@ This file runs the project. FABLE supplies engineering force. Do not paste FABLE
 | Public indexable page | Section 3 (SEO / AEO / GEO) |
 | API / data / auth / admin | Section 5.2 in full |
 | New project or architecture change | Layer S (12-surface map) before any code |
+| Classify risk / choose ritual | Section 10.1 — do not guess the tier |
 | Delete / migration / payments / secrets | Tier 3: named approval + rollback plan |
 
 Write one session-map line: `FABLE: [core | R | S | UI | Visibility | Security]`.
@@ -152,11 +154,16 @@ If infra is decided, delete this section and replace it with the real vendor con
 5. Do not add, upgrade, or remove a library without explicit permission.
 6. Do not assume. Missing = ask.
 7. One phase per reply, then stop and wait.
-8. In every phase: report first (problem / file / line / severity / fix). No execution until the user says `نفّذ`.
+8. In every phase: report first (problem / file / line / severity / fix). No **write** until the user says `نفّذ`.
 9. After execution: touched files + before/after + one manual test.
 10. Any fix that can change behavior = label it `behavioral change` + the lower-risk alternative.
 11. Do not trust session memory for repo state. Re-read files before any claim.
-12. Strictness scales with risk. A cosmetic edit does not get a full-system ritual. Security, data, and public surfaces are never relaxed.
+12. Strictness scales with risk. Tiers live in FABLE Section 10.1. A cosmetic edit does not get a full-system ritual. Security, data, and public surfaces are never relaxed.
+
+### `نفّذ` vs read-only scan
+
+- **Does not wait for `نفّذ`:** reading files; classifying NEW/EXISTING; writing the session map in chat; running `skills/app-security-gate/scripts/scan-secrets.sh` (prints path + kind + line, values redacted).
+- **Waits for `نفّذ`:** any file write, secret rotation, git history rewrite, deploy, install/upgrade of libraries, deleting files.
 
 ---
 
